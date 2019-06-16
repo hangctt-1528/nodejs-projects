@@ -17,7 +17,7 @@ export default {
         window.onload = () => {
             window.gapi.load('auth2', () => {
                 this.auth2 = window.gapi.auth2.init({
-                    client_id: '52893669070-h3llhsjv4nav458j5fcm54k742ml08ae.apps.googleusercontent.com'
+                    client_id: '354051376530-ieo4tp8dfqqdlj152tu3sn1asliikd4u.apps.googleusercontent.com'
                 });
             });
         }
@@ -49,7 +49,7 @@ export default {
                 console.log("success")
             })
             .catch(e => {
-                console.log("error")
+                console.log(e)
             })
         }
     }

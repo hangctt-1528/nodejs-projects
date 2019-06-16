@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var keys = require('../private/gCredential.json');
 var googleAuth = require('google-auth-library');
+var {google} = require('googleapis')
 
 /* GET home page. */
 router.get('/index', function(req, res, next) {
@@ -20,6 +21,13 @@ router.post('/storeauthcode', function(req, res, next) {
     oAuth2Client.getToken(req.body.code, (err, token, res) => {
       console.log("save %s", token.access_token)
       oAuth2Client.setCredentials(token)
+      const oAuth2 = google.oauth2({
+        version: 'v2',
+        auth: oAuth2Client
+      })
+      oAuth2.userinfo.get((err, res) => {
+        console.log(res.data)
+      })
     })
     res.send({
       message: "Sucess"
